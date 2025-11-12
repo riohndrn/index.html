@@ -1,0 +1,238 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Pengumpulan Tugas</title>
+
+  <style>
+    :root{
+      --bg1: #0f1724;
+      --bg2: #071029;
+      --glass: rgba(255,255,255,0.06);
+      --glass-2: rgba(255,255,255,0.03);
+      --accent-1: #6EE7B7;
+      --accent-2: #60A5FA;
+      --muted: rgba(255,255,255,0.65);
+      --card-shadow: 0 8px 30px rgba(2,6,23,0.6);
+      --radius: 14px;
+      font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      min-height:100%;
+      background: radial-gradient(1200px 600px at 10% 10%, rgba(96,165,250,0.08), transparent),
+                  radial-gradient(900px 500px at 90% 90%, rgba(110,231,183,0.06), transparent),
+                  linear-gradient(180deg,var(--bg1),var(--bg2));
+      color: #fff;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:48px 20px;
+    }
+
+    .wrap{
+      width:100%;
+      max-width:940px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.02));
+      border-radius: calc(var(--radius) + 6px);
+      padding:28px;
+      box-shadow: var(--card-shadow);
+      border: 1px solid rgba(255,255,255,0.04);
+      backdrop-filter: blur(8px) saturate(120%);
+    }
+
+    header{
+      display:flex;
+      align-items:center;
+      gap:16px;
+      margin-bottom:18px;
+    }
+
+    .logo{
+      width:64px;
+      height:64px;
+      border-radius:12px;
+      background: linear-gradient(135deg, rgba(96,165,250,0.18), rgba(110,231,183,0.12));
+      display:grid;
+      place-items:center;
+      color: #fff;
+      font-weight:700;
+      font-size:18px;
+      -webkit-backdrop: blur(6px);
+    }
+
+    h1{
+      margin:0;
+      font-size:20px;
+      letter-spacing:0.2px;
+    }
+
+    p.lead{
+      margin:6px 0 0 0;
+      color:var(--muted);
+      font-size:13px;
+    }
+
+    /* Task grid */
+    .grid{
+      margin-top:18px;
+      display:grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap:14px;
+    }
+
+    .card{
+      background: linear-gradient(180deg,var(--glass), var(--glass-2));
+      border-radius:12px;
+      padding:16px;
+      border: 1px solid rgba(255,255,255,0.04);
+      transition: transform .28s cubic-bezier(.2,.9,.3,1), box-shadow .28s;
+      cursor: default;
+      position:relative;
+      overflow:hidden;
+    }
+
+    .card:hover{
+      transform: translateY(-6px) scale(1.01);
+      box-shadow: 0 18px 50px rgba(2,6,23,0.6);
+    }
+
+    .task-title{
+      font-size:15px;
+      font-weight:600;
+      margin:0 0 6px 0;
+    }
+
+    .task-meta{
+      font-size:13px;
+      color:var(--muted);
+      margin:0;
+      display:flex;
+      gap:8px;
+      align-items:center;
+    }
+
+    .badge{
+      display:inline-block;
+      padding:6px 10px;
+      border-radius:999px;
+      font-size:12px;
+      font-weight:600;
+      background: linear-gradient(90deg,var(--accent-1),var(--accent-2));
+      color: rgba(6,10,15,0.95);
+      box-shadow: 0 4px 16px rgba(96,165,250,0.08);
+    }
+
+    .card .actions{
+      margin-top:12px;
+      display:flex;
+      gap:8px;
+      align-items:center;
+    }
+
+    .link-btn{
+      font-size:13px;
+      padding:8px 10px;
+      border-radius:10px;
+      border: none;
+      background: rgba(255,255,255,0.04);
+      color:var(--muted);
+      cursor:pointer;
+      transition: background .18s, color .18s, transform .12s;
+    }
+
+    .link-btn:hover{
+      background: rgba(255,255,255,0.06);
+      color:#fff;
+      transform: translateY(-2px);
+    }
+
+    /* small decorative gradient line */
+    .accent-line{
+      height:6px;
+      width:100%;
+      background: linear-gradient(90deg,var(--accent-2), var(--accent-1));
+      border-radius:999px;
+      margin-top:14px;
+      opacity:0.95;
+    }
+
+    /* responsive tweaks */
+    @media (max-width:520px){
+      .logo{width:54px;height:54px;font-size:16px}
+      .wrap{padding:18px}
+      h1{font-size:18px}
+    }
+  </style>
+</head>
+<body>
+  <main class="wrap" role="main" aria-label="Pengumpulan Tugas">
+    <header>
+      <div class="logo">PT</div>
+      <div>
+        <h1>Pengumpulan Tugas</h1>
+        <p class="lead">Kumpulan file tugas mata kuliah / pelatihan — klik untuk melihat.</p>
+      </div>
+    </header>
+
+    <section class="grid" aria-label="Daftar tugas">
+      <article class="card" id="tugas-1">
+        <div class="task-top">
+          <h3 class="task-title">Tugas 1 — Portofolio</h3>
+          <p class="task-meta"><span class="badge">HTML</span><span>File: <strong>tugas-1/index.html</strong></span></p>
+        </div>
+        <div class="actions">
+          <button class="link-btn" onclick="openPath('tugas-1/index.html')">Buka file</button>
+        </div>
+      </article>
+
+      <article class="card" id="tugas-2">
+        <div class="task-top">
+          <h3 class="task-title">Tugas 2 — Kalkulator</h3>
+          <p class="task-meta"><span class="badge">Python</span><span>File: <strong>tugas-2/analysis.ipynb</strong></span></p>
+        </div>
+        <div class="actions">
+          <button class="link-btn" onclick="openPath('tugas-2/analysis.ipynb')">Buka file</button>
+        </div>
+      </article>
+
+      <article class="card" id="tugas-3">
+        <div class="task-top">
+          <h3 class="task-title">Tugas 3 — Mini Project</h3>
+          <p class="task-meta"><span class="badge">JS</span><span>File: <strong>tugas-3/README.md</strong></span></p>
+        </div>
+        <div class="actions">
+          <button class="link-btn" onclick="openPath('tugas-3/README.md')">Buka file</button>
+        </div>
+      </article>
+
+      <article class="card" id="tugas-4">
+        <div class="task-top">
+          <h3 class="task-title">Tugas 4 — Laporan</h3>
+          <p class="task-meta"><span class="badge">DOC</span><span>File: <strong>tugas-4/laporan.pdf</strong></span></p>
+        </div>
+        <div class="actions">
+          <button class="link-btn" onclick="openPath('tugas-4/laporan.pdf')">Buka file</button>
+        </div>
+      </article>
+    </section>
+
+    <div class="accent-line" aria-hidden="true"></div>
+  </main>
+
+  <script>
+    // Pada GitHub (web) tombol ini tidak bisa membuka file lokal
+    // tapi tetap berguna untuk preview di GitHub Pages atau saat direpo lokal.
+    function openPath(path){
+      // cobalah buka relative path — ini bekerja jika halaman dipublikasikan (GitHub Pages)
+      window.location.href = path;
+    }
+  </script>
+</body>
+</html>
